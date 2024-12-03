@@ -1,5 +1,29 @@
-import { Terminal, Server, Cloud } from 'lucide-react';
+import { Terminal, Server, Cloud, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import ParticleBackground from './ParticleBackground';
+
+const projects = [
+  {
+    id: 1,
+    title: "Personal Portfolio",
+    demo: "https://pankajgusain.com"
+  },
+  {
+    id: 2,
+    title: "AI Integrated Chatbot",
+    demo: "https://braineryy.netlify.app/"
+  },
+  {
+    id: 3,
+    title: "Attendance Management System",
+    demo: "https://attendancee.netlify.app/"
+  },
+  {
+    id: 4,
+    title: "Bus Ticketing & Payment System",
+    demo: "https://main.d3fmgktlr6m799.amplifyapp.com/"
+  }
+];
 
 export default function Hero() {
   return (
@@ -65,14 +89,28 @@ export default function Hero() {
             <a href="#contact" className="btn-3d">
               Get in Touch
             </a>
-            <a 
-              href="https://attendancee.netlify.app/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="neo-brutalism bg-white/10 text-white px-8 py-3 rounded-lg backdrop-blur-lg"
-            >
-              View Projects
-            </a>
+            <div className="relative group">
+              <Link to="/projects" className="neo-brutalism bg-white/10 px-8 py-3 rounded-lg backdrop-blur-lg inline-block">
+                View Projects
+              </Link>
+              <div className="absolute left-0 top-full mt-2 w-72 bg-slate-800/95 backdrop-blur-lg rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10">
+                {projects.map((project) => (
+                  <a
+                    key={project.id}
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-4 py-3 hover:bg-white/10 transition-colors first:rounded-t-lg last:rounded-b-lg border-b border-white/10 last:border-0"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-cyan-400 font-mono">#{project.id}</span>
+                      <span className="text-gray-200">{project.title}</span>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-cyan-400" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

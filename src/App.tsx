@@ -1,13 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import TechVisuals from './components/TechVisuals';
 import Contact from './components/Contact';
+import Projects from './pages/Projects';
 
-function App() {
+function HomePage() {
   return (
-    <div className="bg-slate-900 text-white">
-      <Header />
+    <>
       <main>
         <Hero />
         <Skills />
@@ -21,7 +22,21 @@ function App() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="bg-slate-900 text-white">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects" element={<Projects />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
