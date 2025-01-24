@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-950 to-slate-950;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+    transform-style: preserve-3d;
+  }
+
+  .glass-card:hover {
+    @apply shadow-2xl shadow-indigo-500/20;
+    transform: translateY(-5px) rotateX(2deg);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: shine 8s linear infinite;
+  }
+
+  .icon-gradient {
+    animation: iconColorChange 8s infinite;
+  }
+
+  @keyframes iconColorChange {
+    0% { color: #38bdf8; } /* cyan-400 */
+    20% { color: #818cf8; } /* indigo-400 */
+    40% { color: #c084fc; } /* purple-400 */
+    60% { color: #fb7185; } /* rose-400 */
+    80% { color: #34d399; } /* emerald-400 */
+    100% { color: #38bdf8; } /* back to cyan-400 */
+  }
+
+  @keyframes shine {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  .neo-brutalism {
+    @apply relative overflow-hidden;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.7);
+    transform: translateZ(0);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .neo-brutalism:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  .card-3d {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: all 0.3s ease-out;
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+  }
+
+  .card-3d::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    transform: translateZ(-1px);
+  }
+
+  .btn-3d {
+    @apply relative overflow-hidden rounded-lg px-8 py-3 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    box-shadow: 0 4px 0 rgb(67, 56, 202),
+                0 10px 20px rgba(67, 56, 202, 0.3);
+    transform: translateY(0);
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgb(67, 56, 202),
+                0 15px 25px rgba(67, 56, 202, 0.35);
+  }
+
+  .btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgb(67, 56, 202),
+                0 5px 15px rgba(67, 56, 202, 0.25);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
