@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -28,15 +29,17 @@ function HomePage() {
 
 function App() {
   return (
-    <Router>
-      <div className="bg-slate-900 text-white">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="bg-slate-900 text-white">
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

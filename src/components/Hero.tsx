@@ -1,31 +1,38 @@
 import { Terminal, Server, Cloud, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import ParticleBackground from './ParticleBackground';
 
 const projects = [
   {
     id: 1,
     title: "Personal Portfolio",
+    titleJp: "個人ポートフォリオ",
     demo: "https://pankajgusain.com"
   },
   {
     id: 2,
     title: "AI Integrated Chatbot",
+    titleJp: "AI搭載チャットボット",
     demo: "https://braineryy.netlify.app/"
   },
   {
     id: 3,
     title: "Attendance Management System",
+    titleJp: "出席管理システム",
     demo: "https://attendancee.netlify.app/"
   },
   {
     id: 4,
     title: "Bus Ticketing & Payment System",
+    titleJp: "バス予約・決済システム",
     demo: "https://main.d3fmgktlr6m799.amplifyapp.com/"
   }
 ];
 
 export default function Hero() {
+  const { language, t } = useLanguage();
+
   return (
     <div className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       <ParticleBackground />
@@ -79,19 +86,19 @@ export default function Hero() {
           </div>
           <h1 className="text-4xl sm:text-6xl font-bold mb-6 relative">
             <span className="gradient-text animate-gradient">
-              Cloud and DevOps Engineer
+              {t('hero.title')}
             </span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl backdrop-blur-sm">
-            Automating infrastructure, optimizing deployments, and building scalable cloud solutions
+            {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
             <a href="#contact" className="btn-3d">
-              Get in Touch
+              {t('hero.cta.contact')}
             </a>
             <div className="relative group">
               <Link to="/projects" className="neo-brutalism bg-white/10 px-8 py-3 rounded-lg backdrop-blur-lg inline-block">
-                View Projects
+                {t('hero.cta.projects')}
               </Link>
               <div className="absolute left-0 top-full mt-2 w-72 bg-slate-800/95 backdrop-blur-lg rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10">
                 {projects.map((project) => (
@@ -104,7 +111,9 @@ export default function Hero() {
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-cyan-400 font-mono">#{project.id}</span>
-                      <span className="text-gray-200">{project.title}</span>
+                      <span className="text-gray-200">
+                        {language === 'jp' ? project.titleJp : project.title}
+                      </span>
                     </div>
                     <ExternalLink className="w-4 h-4 text-cyan-400" />
                   </a>
