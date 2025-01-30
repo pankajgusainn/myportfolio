@@ -3,24 +3,24 @@ import { Github, ExternalLink } from 'lucide-react';
 const projects = [
   {
     id: 1,
-    title: "Personal Portfolio",
-    description: "Modern portfolio website built with React and hosted on AWS",
-    github: "https://github.com/pankajgusainn",
-    demo: "https://pankajgusain.com"
-  },
-  {
-    id: 2,
     title: "AI Integrated Chatbot",
     description: "Intelligent chatbot powered by Gemini AI for natural conversations and advanced query handling",
     github: "https://github.com/pankajgusainn",
     demo: "https://braineryy.netlify.app/"
   },
   {
-    id: 3,
+    id: 2,
     title: "Attendance Management System",
     description: "Real-time attendance tracking and management system",
     github: "https://github.com/pankajgusainn",
     demo: "https://attendancee.netlify.app/"
+  },
+  {
+    id: 3,
+    title: "Personal Portfolio",
+    description: "Modern portfolio website built with React and hosted on AWS",
+    github: "https://github.com/pankajgusainn",
+    demo: "https://pankajgusain.com"
   },
   {
     id: 4,

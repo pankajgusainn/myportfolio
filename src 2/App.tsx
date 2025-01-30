@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import TechVisuals from './components/TechVisuals';
 import Contact from './components/Contact';
 import Projects from './pages/Projects';
+import AIChatIcon from './components/AIChatIcon';
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<Projects />} />
           </Routes>
+          <AIChatIcon />
         </div>
       </Router>
     </LanguageProvider>

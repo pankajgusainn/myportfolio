@@ -123,4 +123,149 @@
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
+
+  @keyframes robot-mechanism {
+    0%, 100% {
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      transform: rotate(-3deg) scale(1.05) translateX(-2px);
+    }
+    50% {
+      transform: rotate(0deg) scale(1);
+    }
+    75% {
+      transform: rotate(3deg) scale(1.05) translateX(2px);
+    }
+  }
+
+  .animate-robot-mechanism {
+    animation: robot-mechanism 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in 0.3s ease-out;
+  }
+
+  .slide-in-from-bottom {
+    animation: slide-in-from-bottom 0.3s ease-out;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-white\/10 {
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  }
+
+  .scrollbar-track-transparent {
+    scrollbar-track-color: transparent;
+  }
+
+  /* For Webkit browsers */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  @keyframes neon-pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 
+        0 0 5px theme('colors.cyan.400'),
+        0 0 10px theme('colors.cyan.400'),
+        0 0 15px theme('colors.purple.400'),
+        0 0 20px theme('colors.purple.400');
+    }
+    50% {
+      opacity: 0.7;
+      box-shadow: 
+        0 0 10px theme('colors.cyan.400'),
+        0 0 20px theme('colors.cyan.400'),
+        0 0 30px theme('colors.purple.400'),
+        0 0 40px theme('colors.purple.400');
+    }
+  }
+
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .header-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      theme('colors.cyan.400') 0%,
+      theme('colors.purple.400') 50%,
+      theme('colors.cyan.400') 100%
+    );
+    background-size: 200% auto;
+    animation: gradient-flow 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .header-glow.active {
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+
+  .header-glow.active::before {
+    opacity: 0.15;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      theme('colors.cyan.500'),
+      theme('colors.purple.600')
+    );
+  }
 }

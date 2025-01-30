@@ -6,21 +6,21 @@ import ParticleBackground from './ParticleBackground';
 const projects = [
   {
     id: 1,
-    title: "Personal Portfolio",
-    titleJp: "個人ポートフォリオ",
-    demo: "https://pankajgusain.com"
-  },
-  {
-    id: 2,
     title: "AI Integrated Chatbot",
     titleJp: "AI搭載チャットボット",
     demo: "https://braineryy.netlify.app/"
   },
   {
-    id: 3,
+    id: 2,
     title: "Attendance Management System",
     titleJp: "出席管理システム",
     demo: "https://attendancee.netlify.app/"
+  },
+  {
+    id: 3,
+    title: "Personal Portfolio",
+    titleJp: "個人ポートフォリオ",
+    demo: "https://pankajgusain.com"
   },
   {
     id: 4,
