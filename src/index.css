@@ -14,6 +14,86 @@
 }
 
 @layer components {
+  .hero-3d-scene {
+    --hero-rotate-x: 0deg;
+    --hero-rotate-y: 0deg;
+    --hero-pointer-x: 50%;
+    --hero-pointer-y: 50%;
+    perspective: 1300px;
+  }
+
+  .hero-tilt {
+    transform-style: preserve-3d;
+    transform: rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));
+    transition: transform 180ms ease-out;
+  }
+
+  .hero-lens {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--hero-pointer-x) var(--hero-pointer-y),
+      rgba(56, 189, 248, 0.18) 0%,
+      rgba(129, 140, 248, 0.1) 20%,
+      rgba(15, 23, 42, 0) 55%
+    );
+    mix-blend-mode: screen;
+    transition: background 180ms ease-out;
+    z-index: 5;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(40px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 4;
+    animation: orb-drift 14s ease-in-out infinite;
+  }
+
+  .hero-orb-one {
+    width: 280px;
+    height: 280px;
+    top: 10%;
+    left: -5%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.55), rgba(56, 189, 248, 0));
+  }
+
+  .hero-orb-two {
+    width: 360px;
+    height: 360px;
+    right: -10%;
+    bottom: 2%;
+    animation-delay: -6s;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45), rgba(168, 85, 247, 0));
+  }
+
+  @keyframes orb-drift {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -22px, 0) scale(1.08);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-tilt {
+      transform: none;
+      transition: none;
+    }
+
+    .hero-lens {
+      background: none;
+    }
+
+    .hero-orb {
+      animation: none;
+    }
+  }
+
   .glass-card {
     @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
     transform-style: preserve-3d;
