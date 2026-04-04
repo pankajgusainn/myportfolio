@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Terminal, Server, Cloud, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -32,10 +33,54 @@ const projects = [
 
 export default function Hero() {
   const { language, t } = useLanguage();
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const heroElement = heroRef.current;
+
+    if (!heroElement) {
+      return;
+    }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = heroElement.getBoundingClientRect();
+      const pointerX = (event.clientX - rect.left) / rect.width;
+      const pointerY = (event.clientY - rect.top) / rect.height;
+
+      const rotateY = (pointerX - 0.5) * 12;
+      const rotateX = (0.5 - pointerY) * 10;
+
+      heroElement.style.setProperty('--hero-rotate-x', `${rotateX.toFixed(2)}deg`);
+      heroElement.style.setProperty('--hero-rotate-y', `${rotateY.toFixed(2)}deg`);
+      heroElement.style.setProperty('--hero-pointer-x', `${(pointerX * 100).toFixed(2)}%`);
+      heroElement.style.setProperty('--hero-pointer-y', `${(pointerY * 100).toFixed(2)}%`);
+    };
+
+    const resetHeroMotion = () => {
+      heroElement.style.setProperty('--hero-rotate-x', '0deg');
+      heroElement.style.setProperty('--hero-rotate-y', '0deg');
+      heroElement.style.setProperty('--hero-pointer-x', '50%');
+      heroElement.style.setProperty('--hero-pointer-y', '50%');
+    };
+
+    heroElement.addEventListener('mousemove', handleMouseMove);
+    heroElement.addEventListener('mouseleave', resetHeroMotion);
+
+    return () => {
+      heroElement.removeEventListener('mousemove', handleMouseMove);
+      heroElement.removeEventListener('mouseleave', resetHeroMotion);
+    };
+  }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <div
+      ref={heroRef}
+      className="hero-3d-scene relative min-h-screen flex items-center justify-center pt-16 overflow-hidden"
+    >
       <ParticleBackground />
+      <div className="hero-orb hero-orb-one" />
+      <div className="hero-orb hero-orb-two" />
+      <div className="hero-lens" />
 
       <div className="absolute inset-0 z-0 opacity-20">
         <video
@@ -68,7 +113,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">
+      <div className="hero-tilt max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">
         <div className="text-center lg:text-left lg:max-w-2xl">
           <div className="flex justify-center lg:justify-start gap-6 mb-8">
             {[Terminal, Server, Cloud].map((Icon, index) => (
